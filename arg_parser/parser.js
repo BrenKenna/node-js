@@ -35,7 +35,9 @@ class Parser{
             // Otherwise create
             this.argData.get("Global Arguments").set(arg, new Map());
             this.argData.get("Global Arguments").get(arg).set("Description", arg_descript);
-            this.argData.get("Global Arguments").get(arg).set("Keys", argKeys.split(","));
+            this.argData.get("Global Arguments").get(arg).set("Keys", new Map());
+            this.argData.get("Global Arguments").get(arg).get("Keys").set("search", argKeys.split(","));
+            this.argData.get("Global Arguments").get(arg).get("Keys").set("value", null);
         }
         
     }
@@ -54,7 +56,9 @@ class Parser{
             // Add argument to action
             this.argData.get('Actions').get(action).set(arg, new Map());
             this.argData.get('Actions').get(action).get(arg).set("Description", arg_descript);
-            this.argData.get('Actions').get(action).get(arg).set("Keys", argKeys.split(","));
+            this.argData.get('Actions').get(action).get(arg).set("Keys", new Map());
+            this.argData.get('Actions').get(action).get(arg).get("Keys").set("search", argKeys.split(","));
+            this.argData.get('Actions').get(action).get(arg).get("Keys").set("value", null);
 
         } else{
 
@@ -62,7 +66,9 @@ class Parser{
             this.argData.get('Actions').set(action, new Map() );
             this.argData.get('Actions').get(action).set(arg, new Map());
             this.argData.get('Actions').get(action).get(arg).set("Description", arg_descript);
-            this.argData.get('Actions').get(action).get(arg).set("Keys", argKeys.split(","));
+            this.argData.get('Actions').get(action).get(arg).set("Keys", new Map());
+            this.argData.get('Actions').get(action).get(arg).get("Keys").set("search", argKeys.split(","));
+            this.argData.get('Actions').get(action).get(arg).get("Keys").set("value", null);
         }
     }
 
@@ -86,6 +92,16 @@ class Parser{
     // Get description
     getDescription() {
         return this.argData.get("Description");
+    }
+
+    // Get global arguments
+    getGlobalArguments(){
+        return this.argData.get("Global Arguments");
+    }
+
+    // Get actions
+    getActions() {
+        return this.argData.get('Actions');
     }
 
     // Get argument
