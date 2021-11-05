@@ -4,7 +4,7 @@
 
 // Import modules
 // console.log('utils.js')
-const fs = require("fs")
+const fs = require("fs");
 
 
 // Write to file
@@ -12,10 +12,10 @@ function createNotes(notes, note){
 
     // Only write if file does not exist
     if (fs.existsSync(notes)){
-        console.log(`Writing to ${notes}`)
-        fs.writeFileSync(notes, note)
+        console.log(`Writing to ${notes}`);
+        fs.writeFileSync(notes, note);
     } else{
-        console.log("Not writing to existing file")
+        console.log("Not writing to existing file");
     }
     
 }
@@ -25,25 +25,25 @@ function createNotes(notes, note){
 const appendNotes = (notes, note) => {
 
     if ( !fs.existsSync(notes)) {
-        console.log("Error, can only append an existing file")
+        console.log("Error, can only append an existing file");
     } else{
-        console.log(`Appending to ${notes}`)
-        fs.appendFileSync(notes, note)
+        console.log(`Appending to ${notes}`);
+        fs.appendFileSync(notes, note);
     }
 }
 
 
 // Read notes
 const readNotes = (notes) => {
-    var note
+    let note;
     if(fs.existsSync(notes)){
-        note = fs.readFileSync(notes)
+        note = fs.readFileSync(notes);
     } else{
-        console.log(`Error, could not find notes ${notes}`)
+        console.log(`Error, could not find notes ${notes}`);
     }
-    return note
+    return note;
 }
 
 // Exportable variables
-const name = "Bill"
-module.exports = { name, createNotes, appendNotes, readNotes }
+const name = "Bill";
+module.exports = { name, createNotes, appendNotes, readNotes };

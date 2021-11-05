@@ -1,7 +1,7 @@
 // Import file system module
-const utils = require("./notes.js")
-const validator = require("validator")
-const notesRoot = "./notes"
+const utils = require("./notes.js");
+const validator = require("validator");
+const notesRoot = "./notes";
 // console.log(utils.name)
 
 
@@ -9,19 +9,19 @@ const notesRoot = "./notes"
 const command = process.argv[2];
 if (command.toLowerCase() == "create"){
     console.log("Attempting to create note");
-    utils.createNotes('notes-2.txt', 'Hello again :)')
+    utils.createNotes('notes-2.txt', 'Hello again :)');
 
 } else if (command.toLowerCase() == "read"){
 
     // Handle reading note
-    note = utils.readNotes(`${notesRoot}/notes-2.txt`)
-    console.log(`${note}`)
+    note = utils.readNotes(`${notesRoot}/notes-2.txt`);
+    console.log(`${note}`);
 
 }else if (command.toLowerCase() == "update"){
 
     // Handle appending to a note
-    note = utils.appendNotes(`${notesRoot}/notes-2.txt`, "Hello")
-    console.log(`${note}`)
+    note = utils.appendNotes(`${notesRoot}/notes-2.txt`, "Hello");
+    console.log(`${note}`);
 
 }else if (command.toLowerCase() == "delete"){
 
@@ -30,7 +30,7 @@ if (command.toLowerCase() == "create"){
     // console.log(`${note}`)
 
 } else {
-    console.log("Error only create, get, update and delete are allowed")
+    console.log("Error only create, get, update and delete are allowed");
 }
 
 
