@@ -1,10 +1,10 @@
 /**
  * 
- * Populating object is straigth forward:
+ * Populating object is straight forward:
  *  - Need function for adding value to argument key
  * 
  *  - Separate function for adding "argument key" to an action
- *      => For each action, get search term, and run "addArgument"
+ *      => For each action, get search term, and run "addArgumentValue"
  * 
  *  - Drop argv slice
  * 
@@ -17,8 +17,8 @@
  * 
  *  - Print function + helper function:
  *      -> Sectioned into (along with concatenated search terms):
- *          a). Description.
- *          b). Global Arguments.
+ *          a). Description
+ *          b). Global Arguments
  *          c). Actions
  *          d). Action arguments
  * 
