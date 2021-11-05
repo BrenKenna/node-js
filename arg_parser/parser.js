@@ -5,9 +5,9 @@ class Parser{
     // Constructor
     constructor() {
         this.argData = new Map( [
-            [ "description", "" ],
-            [ "actions", new Map() ],
-            [ "arguments", new Map() ]
+            [ "Description", "" ],
+            [ 'Actions', new Map() ],
+            [ "Global Arguments", new Map() ]
         ]);
     }
 
@@ -20,53 +20,60 @@ class Parser{
 
     // Set description
     setDescription(description) {
-        this.argData.set('description', description);
+        this.argData.set('Description', description);
     }
 
     // Add an argument <= Maybe have thing to manage --Value -V/v
-    addArg(arg, arg_descript) {
+    addArg(arg, arg_descript, argKeys) {
 
         // Pass if argument exists
-        if ( this.argData.get('arguments').has(arg) ) {
+        if ( this.argData.get('Global Arguments').has(arg) ) {
             console.log(`Error, ${arg} already present in object`);
 
         } else{
 
             // Otherwise create
-            this.argData.get("arguments").set(arg, arg_descript);
+            this.argData.get("Global Arguments").set(arg, new Map());
+            this.argData.get("Global Arguments").get(arg).set("Description", arg_descript);
+            this.argData.get("Global Arguments").get(arg).set("Keys", argKeys.split(","));
         }
         
     }
 
     // Drop argument
     dropArgument(arg) {
-        this.argData.get("arguments").delete(arg);
+        this.argData.get("Global Arguments").delete(arg);
     }
 
     // Add action
-    addAction(action, arg, arg_descript) {
+    addAction(action, arg, arg_descript, argKeys) {
 
         // Handle creating first
-        if ( this.argData.get('actions').has(action) ) {
+        if ( this.argData.get('Actions').has(action) ) {
             
             // Add argument to action
-            this.argData.get("actions").get(action).set(arg, arg_descript);
+            this.argData.get('Actions').get(action).set(arg, new Map());
+            this.argData.get('Actions').get(action).get(arg).set("Description", arg_descript);
+            this.argData.get('Actions').get(action).get(arg).set("Keys", argKeys.split(","));
 
         } else{
+
             // Add the action map, then add arg + description to that key
-            this.argData.get("actions").set(action, new Map() );
-            this.argData.get("actions").get(action).set(arg, arg_descript);
+            this.argData.get('Actions').set(action, new Map() );
+            this.argData.get('Actions').get(action).set(arg, new Map());
+            this.argData.get('Actions').get(action).get(arg).set("Description", arg_descript);
+            this.argData.get('Actions').get(action).get(arg).set("Keys", argKeys.split(","));
         }
     }
 
     // Drop action
     dropAction(action) {
-        this.argData.get("actions").delete(action);
+        this.argData.get('Actions').delete(action);
     }
 
     // Drop argument from action
     dropArgAction(action, arg) {
-        this.argData.get("actions").get(action).delete(arg);
+        this.argData.get('Actions').get(action).delete(arg);
     }
 
 
@@ -78,22 +85,22 @@ class Parser{
 
     // Get description
     getDescription() {
-        return this.argData.get("description");
+        return this.argData.get("Description");
     }
 
     // Get argument
     getArgument(arg) {
-        return this.argData.get("arguments").get(arg);
+        return this.argData.get("Global Arguments").get(arg);
     }
 
     // Get action
     getAction(action) {
-        return this.argData.get("actions").get(action);
+        return this.argData.get('Actions').get(action);
     }
 
     // Get arg in action
     getActionArg(action, arg) {
-        return this.argData.get("actions").get(action).get(arg);
+        return this.argData.get('Actions').get(action).get(arg);
     }
 }
 
