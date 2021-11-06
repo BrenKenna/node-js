@@ -25,6 +25,11 @@
  *      -> If user supplies -h/--help then console.log(`${ParserObj.display()}`)
  * 
  *  - In seeing username, title etc actions should have an "ActionScopedArgs"
+ * 
+ *  - User should be able to query value of their argKey
+ *          String username;
+ *          queryValue(arg, path = globalArg | actionScoped | actionArg | deepSearch);
+ *          username = queryValue(username, path = "actionScoped");
  *
  */
 
