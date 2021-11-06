@@ -5,13 +5,28 @@
 // Import modules
 // console.log('utils.js')
 const fs = require("fs");
+const notesRoot = "./notes";
 
+// Register user
+function registerUser(username, email) {
+    let path = notesRoot + "/" + username;
+    let out = path + "/" + username + ".txt";
+    if ( fs.existsSync(path) ) {
+        console.log("User already registerd");
+    } else {
+        fs.mkdirSync(path);
+        note = `Username = ${username}\nEmail = ${email}`;
+        fs.writeFileSync(out, note);
+        console.log(`User registered under\n${out}`);
+    }
+    
+}
 
 // Write to file
 function createNotes(notes, note){
 
     // Only write if file does not exist
-    if (fs.existsSync(notes)){
+    if ( !fs.existsSync(notes) ){
         console.log(`Writing to ${notes}`);
         fs.writeFileSync(notes, note);
     } else{
@@ -45,5 +60,4 @@ const readNotes = (notes) => {
 }
 
 // Exportable variables
-const name = "Bill";
-module.exports = { name, createNotes, appendNotes, readNotes };
+module.exports = {notesRoot, registerUser, createNotes, appendNotes, readNotes };

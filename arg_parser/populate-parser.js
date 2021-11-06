@@ -23,6 +23,8 @@
  *          d). Action arguments
  * 
  *      -> If user supplies -h/--help then console.log(`${ParserObj.display()}`)
+ * 
+ *  - In seeing username, title etc actions should have an "ActionScopedArgs"
  *
  */
 
@@ -79,41 +81,104 @@ ParserObj.addAction("delete", "Heading", "Heading of the body to delete", "-H,--
 
 // Initialize variables
 let argInd;
-argv = [ "--server", "myhostname", "-T", "60", "register", "--username", "bkenna", "-E", "hello@donkey.com" ];
+argv = [
+    "--server", "myhostname", "-T", "60",
+    "register", "--username", "bkenna", "-E", "hello@donkey.com",
+    "update", "-T", "myFirstNote", "--heading", "Section1", "-U", "bkenna", "--body", "myFile.txt"
+];
 
 
 // Set global variables
 for (i of ParserObj.getGlobalArguments().keys() ){
-    for(j of ParserObj.getArgument(i).get("Keys").get("search")){
-        argInd = argv.indexOf(j);
-        if(argInd >= 0) {
-            ParserObj.getArgument(i).get("Keys").set("value", argv[argInd+1] );
+    if (i != "State") {
+        for(j of ParserObj.getArgument(i).get("Keys").get("search")){
+            argInd = process.argv.indexOf(j);
+            if(argInd >= 0) {
+                ParserObj.getArgument(i).get("Keys").set("value", process.argv[argInd+1] );
+            }
+            
         }
-        
     }
+    
 }
 
-// console.dir(ParserObj, {depth: null});
-
-
-// Set actions
-let actionInd;
-let argvSlice;
+// Set action variables
 for ( action of ParserObj.getActions().keys() ) {
-    actionInd = argv.indexOf(action);
+    actionInd = process.argv.indexOf(action);
     if( actionInd != -1 ){
 
+        // Set state
+        ParserObj.getAction(action).set("State", 1);
+
         // Slice argv and search it for arguments
-        argvSlice = argv.slice(actionInd);
+        argvSlice = process.argv.slice(actionInd);
         for (argument of ParserObj.getAction(action).keys()){
-            for (j of ParserObj.getActionArg(action, argument).get("Keys").get("search")){
-                argInd = argvSlice.indexOf(j);
-                if ( argInd >= 0 ) {
-                    ParserObj.getActionArg(action, argument).get("Keys").set("value", argvSlice[argInd+1]);
+
+            if (argument != "State") {
+                for (j of ParserObj.getActionArg(action, argument).get("Keys").get("search")){
+                    argInd = argvSlice.indexOf(j);
+                    if ( argInd >= 0 ) {
+                        ParserObj.getActionArg(action, argument).get("Keys").set("value", argvSlice[argInd+1]);
+                    }
                 }
             }
         }   
     }
 }
 
-console.dir(ParserObj, {depth: null});
+
+// Determine active actions
+let actions = [];
+let command;
+for (action of ParserObj.getActions().keys() ) {
+    if (ParserObj.getAction(action).get("State") == 1) {
+        actions.push(action);
+    }
+}
+
+if (actions.length == 1) {
+    command = actions[0];
+}
+
+
+/**
+ * 
+ * Main app code
+ * 
+ */
+
+// Set variables
+let server, timeout;
+let username, email;
+let title, body, heading;
+
+// Global
+server = ParserObj.getArgument("Server").get("Keys").get("value");
+timeout = ParserObj.getArgument("Timeout").get("Keys").get("value");
+
+// Registering
+// username = ParserObj.getActionArg("register", "Username").get("Keys").get("value");
+// email = ParserObj.getActionArg("register", "Email").get("Keys").get("value");
+
+// Creating
+// username = ParserObj.getActionArg("create", "Username").get("Keys").get("value");
+// title = ParserObj.getActionArg("create", "Title").get("Keys").get("value");
+// body = ParserObj.getActionArg("create", "Body").get("Keys").get("value");
+
+
+// Reading
+// username = ParserObj.getActionArg("read", "Username").get("Keys").get("value");
+// title = ParserObj.getActionArg("read", "Title").get("Keys").get("value");
+
+// Updating
+username = ParserObj.getActionArg("update", "Username").get("Keys").get("value");
+title = ParserObj.getActionArg("update", "Title").get("Keys").get("value");
+heading = ParserObj.getActionArg("update", "Heading").get("Keys").get("value");
+body = ParserObj.getActionArg("update", "Body").get("Keys").get("value");
+
+// Set user path constant
+let userPath;
+let note;
+if ( username != undefined) {
+    userPath = `${utils.notesRoot}/${username}`;
+}
