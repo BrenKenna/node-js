@@ -1,0 +1,144 @@
+/* Set body position for scrollspy */
+body{
+    font-family: "Vollkorn", "sans-serif";
+    position: relative;
+    
+}
+
+
+/* Video element */
+#BgVid{
+    position: fixed;
+    min-height: 100%;
+    min-width: 100%;
+    z-index: -100;
+}
+
+
+/* Background image for small devices */
+@media (max-width: 500px){
+    body{
+        background: url("images/ocean.jpg") center center fixed;
+        background-size: cover; 
+    }
+    
+    #BgVid{
+        display: none;
+    }
+}
+
+
+/* Navigation bar */
+.navbar-cust{
+    font-size: 18px;
+    color: #fff;
+    background-color: #1b3759 !important;
+}
+
+
+/* Jumbotron: Featured content */
+#home{
+    background-color: transparent;
+    color: white;
+    text-align: center;
+    padding-top: 15%;
+}
+#home h1{
+    margin-bottom: 30px;
+}
+#home h2{
+    margin-bottom: 50px;
+}
+#home .btn{
+    color: white;
+    font-size: 20px;
+    background-color: rgb(20, 167, 179);
+    border-radius: 8px;
+    padding: 8px 20px;
+}
+#home .btn:hover{
+    background-color: rgba(20, 167, 179, 0.5);
+}
+#home .btn:active{
+    background-color: rgb(20, 167, 179);
+}
+
+/* About divsion: higlighted when active */
+.container{
+    max-width: 1000px;
+}
+#about{
+    color: white;
+    text-align: center;
+    padding-top: 100px;
+}
+#about h2{
+    font-weight: bold;
+}
+#about p{
+    font-size: 17px;
+    margin-bottom: 30px;
+}
+.aboutImage{
+    height: 175px;
+    padding-bottom: 20px;
+}
+
+/* Carousel: Highlighted when active, size, captions-under */
+#promise{
+    padding: 100px;
+}
+
+#promCar{
+    margin: 0 auto;
+    text-align: center;
+}
+
+.carousel-inner .carousel-item img{
+    height: 350px;
+    margin: 0 auto;
+}
+
+.carousel-caption{
+    position: relative;
+    left: auto;
+    right: auto;
+    text-align: center;
+    padding-top: 50px;
+}
+
+
+
+/* Adjust for medium devices */
+@media (max-width: 768px){
+    .carousel-inner .carousel-item img{
+        height: 270px;
+    }
+    .carousel-inner h2{
+        font-size: 22px;
+    }
+}
+
+
+/* Adjust for small devices*/
+@media (max-width: 500px){
+    .carousel-inner .carousel-item img{
+        height: 200px;
+}
+    .carousel-inner h2{
+        font-size: 18px;
+    }
+    
+    .navbar-cust .navbar-brand{
+        font-size: 17px;
+    }
+}
+
+/* Footer: Transparent background */
+.footer{
+    background-color: rgba(29, 167, 179, 0.1);
+    color: white;
+    padding: 10px 0px;
+    margin-top: 150px;
+    font-size: 15px;
+}

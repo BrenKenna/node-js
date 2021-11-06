@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>jQuery-UI: More Widgets</title>
+        <style>
+            .bluebox{
+                background-color:blue;
+                color:white;
+                height:80px;
+                width:500px;
+            }
+            .yellowbox{
+                background-color:rgb(222, 224, 85);
+                height:auto;
+                width:500px;
+            }
+            .redbox{
+                background-color: #f61212;
+                height:80px;
+                width:500px;
+                margin-bottom: 20px;
+            }
+
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+        </script>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/smoothness/jquery-ui.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    </head>
+    
+    <body>
+        <!-- Website Code -->
+        <div class="bluebox ui-corner-all", id='facebook'>
+            <p>
+                <label for="myInp">Enter Value: </label>
+                <input title="Please Enter Value" id="myInp" name="myInp" value="0">
+            </p>
+        </div>
+        <div class="yellowbox", id='apple'>
+            <ul>
+                <li><a href="#Tab1">Tab 1</a></li>
+                <li><a href="#Tab2">Tab 2</a></li>
+                <li><a href="#Tab3">Tab 3</a></li>
+            </ul>
+
+            <div id="Tab1"><p>Paragraph 1</p></div>
+            <div id="Tab2"><p>Paragraph 2</p></div>
+            <div id="Tab3"><p>Paragraph 3</p></div>
+        </div>
+
+
+        <div class="redbox", id='google'>
+            <p>Google</p>
+        </div>
+
+               
+        <!-- Javascript Code -->
+        <script>
+            $(function(){
+
+                // Spinner
+                $('#myInp').spinner({
+                    min: 0,
+                    max: 1000,
+                    step: 50
+                });
+
+
+                // Access contain div of tab
+                $('#apple').tabs({
+                    collapsible: true,
+                    event: "mouseover"
+                    }
+                );
+
+                // Make tabs sortable
+                $("#apple").tabs().find(".ui-tabs-nav").sortable({axis: "x"});
+
+                // Show information on hover: tool tip
+                $("#myInp").tooltip({
+                    show: {effects: "slidedown"}
+                });
+            });
+        </script>
+    </body>
+    
+</html>

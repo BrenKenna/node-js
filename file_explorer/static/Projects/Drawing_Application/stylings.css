@@ -1,0 +1,130 @@
+/* Center all body elements & add image */
+body{
+    text-align: center;
+    background: url("images/watercolor.jpg") center center fixed;
+    background-size: cover;
+}
+
+
+/* Title Div */
+#titleHeader{
+    background: linear-gradient(white, rgba(67,169,228, 0.9));
+    background: -webkit-linear-gradient(white, rgba(67,169,228, 0.9));
+    background: -o-linear-gradient(white, rgba(67,169,228, 0.9));
+    background: -moz-linear-gradient(white, rgba(67,169,228, 0.9));
+    background: -ms-linear-gradient(white, rgba(67,169,228, 0.9));
+    height: 80px;
+    width: 500px;
+    margin: 10px auto;
+    font-size: 3em;
+    color: #fff;
+    line-height: 80px
+}
+
+
+/* Stlye Input Container */
+.inputCont{
+    width: 200px;
+    margin: 0 auto;
+}
+
+
+/* Style art components */
+.input{
+    height: 30px;
+    font-size: 1.3em;
+}
+
+
+/* Stlye Slider */
+#sliderInp{
+    margin: 10px auto;
+}
+
+
+/* Style Brush Size */
+#sizer{
+    height: 3px;
+    width: 3px;
+    border-radius: 100%;
+    background-color: black;
+    margin: 0 auto;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    -moz-transform: translate(-50%, -50%);
+    -webkit-transform: translate(-50%, -50%);
+    -o-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+}
+
+
+/* Pad the Brush Size Div */
+#sizeInp{
+    position: relative;
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+
+
+/* Stlye Canvas Container */
+#ArtContainer{
+    height: 400px;
+    width: 500px;
+    background-color: white;
+    border: 10px solid silver;
+    margin: 10px auto;
+}
+
+/* Style Buttons & their Container */
+.artButDiv{
+    width: 399px;
+    margin: 0 auto;
+}
+
+
+/* Style button containers*/
+.artButs{
+    width: 133px;
+    color: skyblue;
+    font-size: 1.3em;
+    float: left;
+}
+.artBut{
+    background: white;
+    height: 50px;
+    padding: 10px;
+    border-radius: 3px;
+    font-weight: bold;
+    cursor: pointer;
+    box-shadow: 0px 4px grey;
+    -webkit-box-shadow: 0px 4px grey;
+    -moz-box-shadow: 0px 4px grey;
+    position: relative;
+}
+
+/* Hover state */
+.artBut:hover{
+    color: white;
+    background: linear-gradient(white, rgba(67,169,228, 0.9));
+    background: -webkit-linear-gradient(white, rgba(67,169,228, 0.9));
+    background: -o-linear-gradient(white, rgba(67,169,228, 0.9));
+    background: -moz-linear-gradient(white, rgba(67,169,228, 0.9));
+    background: -ms-linear-gradient(white, rgba(67,169,228, 0.9));
+}
+.artBut:active{
+    top: 4px;
+}
+
+
+/* Style Canvas */
+#paint{
+    background-color: white;
+    cursor: crosshair;
+}
+
+.eraseMode{
+    background-color: "red";
+    color = "white";
+}

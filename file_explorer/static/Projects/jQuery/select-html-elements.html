@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+
+<html>
+
+    <head>
+        <meta charset="utf-8">
+        <title>Divisions and Spanning Tutorial</title>
+        <style>
+            .bluebox{
+                background-color:blue;
+                color:white;
+                height:80px;
+                width:500px;
+            }
+            .yellowbox{
+                background-color:rgb(222, 224, 85);
+                height:80px;
+                width:500px;
+            }
+            .redbox{
+                background-color: #f61212;
+                height:auto;
+                width:auto;
+            }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    </head>
+
+    <body>
+        <div class="bluebox">
+            <p>Facebook.</p>
+        </div>
+        <p><a class="link1" href="https://www.facebook.com">donkey</a></p>
+        <p><a href="https://www.google.com">donkey</a></p>
+        <div class="yellowbox">
+            <p>Apple</p>
+            <p>kong</p>
+        </div>
+        <p>donkey</p>
+        <div class="redbox">
+            <p>Google</p>
+            <table>
+                <tr><th>Phone Make</th><th>Model</th><th>Storage</th></tr>
+                <tr><td>Apple</td><td>iPhone1</td><td>8GB</td></tr>
+                <tr><td>Apple</td><td>iPhone2</td><td>12GB</td></tr>
+                <tr><td>Apple</td><td>iPhone3</td><td>16GB</td></tr>
+                <tr><td>Apple</td><td>iPhone4</td><td>24GB</td></tr>
+                <tr><td>Apple</td><td>iPhone5</td><td>32GB</td></tr>
+                <tr><td>Apple</td><td>iPhone6</td><td>40GB</td></tr>
+            </table>
+            <p>Type yoh name bitch:<input><button type="submit"></p>
+        </div>
+        
+        <script>
+
+            // Change font size of all elements
+           // $(function(){
+            //    $(".bluebox").css("font-size", "32px");
+            //});
+
+            // Change font size of all p elements that are childs of division
+            $(function(){
+                $("div > p").css("font-size", "24px");
+            });
+
+
+            // Change font size of all p elements that are childs of division
+            $(function(){
+                $("div ~ p").css("text-align", "center");
+            });
+
+            // Change font size of all p elements that are childs of division
+            $(function(){
+                $("div p").css("text-align", "center");
+            });
+
+            // Change font size of all p elements that are childs of division
+            $(function(){
+                $("div.bluebox").css("color", "black");
+            });
+
+            // Select first-child paragraphs
+            $(function() {
+             $("p:first-child").css("text-decoration", "underline");
+            });
+
+            // Style tables
+            $('tr:even').css("background-color", "grey");
+
+            // Style and submit
+            $(":Submit").css('background-color', 'blue');
+            $(":Input").css('background-color', 'grey');
+
+
+            // Style divsions with tables
+            $("div:has(table)").css('background-color', 'blue');
+        </script>
+    </body>
+</html>

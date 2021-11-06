@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+        <title>Maths Game</title>
+        <link rel="stylesheet" href="styling.css">
+    </head>
+
+
+    <body>
+        <!-- Website Container -->
+        <div id="container">
+        
+            <!-- Score Box -->
+            <div id="scoreBox">
+                Score: <span id="scoreValue">0</span>
+            </div>
+
+            <!-- Message Divisions -->
+            <div id="correct">
+                Correct
+            </div>
+            <div id="wrong">
+                Try again
+            </div>
+
+            <!-- Question Box Division -->
+            <div id="question">
+                <span id="currentQuestion"></span>
+            </div>
+
+            <!-- Instruction Box Division -->
+            <div id="instruction">Click to answer</div>
+
+            <!-- Choice Box Division -->
+            <div id="choice">
+                <div class="choiceBox" id="choice1" onclick="generateLevel('choice1')"></div>
+                <div class="choiceBox" id="choice2" onclick="generateLevel('choice2')"></div>
+                <div class="choiceBox" id="choice3" onclick="generateLevel('choice3')"></div>
+                <div class="choiceBox" id="choice4" onclick="generateLevel('choice4')"></div>
+            </div>
+
+            <!-- Start & Reset Division -->
+            <div id="startReset">
+                <span id="startResetText">Start Game</span>
+            </div>
+
+            <!-- Game Timer Division -->
+            <div id="gameTime">
+                Time Remaining: <span id="gameTimeText"></span>s
+            </div>
+
+            <!-- Game Over Division -->
+            <div id="gameOver"></div>
+
+        </div>
+
+        <!-- Javascript Section -->
+        <script src="javascript.js"></script>
+        
+    </body>
+    
+</html>

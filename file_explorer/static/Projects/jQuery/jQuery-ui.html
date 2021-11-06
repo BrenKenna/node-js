@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>jQuery-UI</title>
+        <style>
+            .bluebox{
+                background-color:blue;
+                color:white;
+                height:80px;
+                width:500px;
+            }
+            .yellowbox{
+                background-color:rgb(222, 224, 85);
+                height:160px;
+                width:500px;
+            }
+            .redbox{
+                background-color: #f61212;
+                height:80px;
+                width:500px;
+            }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+        </script>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/blitzer/jquery-ui.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    </head>
+    
+    <body>
+        <!-- Website Code -->
+        <div class="bluebox ui-corner-all", id='facebook'>
+            <p>Facebook is not <span id='FbSpan'>Donkey Kong</span></p>
+        </div>
+        <div class="yellowbox", id='apple'>
+            <p>Apple</p>
+        </div>
+        <div class="redbox", id='google'>
+            <p>Google</p>
+        </div>
+
+        <div id='errorBox' class="ui-state-error" style="height:100px;margin-top:20px">
+            <p>Error Message</p>
+        </div>
+
+        <!-- Javascript Code -->
+        <script>
+            $(function(){
+                $('#facebook').draggable();
+            });
+        </script>
+    </body>
+    
+</html>

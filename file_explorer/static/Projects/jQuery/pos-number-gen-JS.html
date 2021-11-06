@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Random Position and Color Generator</title>
+        <style>
+            .bluebox{
+                background-color:blue;
+                color:white;
+                height:80px;
+                width:500px;
+            }
+            .yellowbox{
+                background-color:rgb(222, 224, 85);
+                height:80px;
+                width:500px;
+            }
+            .redbox{
+                background-color: #f61212;
+                height:80px;
+                width:500px;
+            }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+        </script>
+    </head>
+    
+    <body>
+        <!-- Website Code -->
+        <div class="bluebox", id='facebook'>
+            <p>Facebook is not <span id='FbSpan'>Donkey Kong</span></p>
+        </div>
+        <div class="yellowbox", id='apple'>
+            <p>Apple</p>
+            <a href="https://www.google.com">donkey</a>
+        </div>
+        <div class="redbox", id='google'>
+            <p>Google</p>
+            <button id='changeApple'>Change Apple</button>
+        </div>
+        
+        <button id='ShowApple'>Show Apple</button>
+        <button id='ChangeFB'>Change FB</button>
+        <!-- Javascript Code -->
+        <script>
+            $(function(){
+    
+                // Change stylings of bluebox click
+                $('.bluebox').click(function() {
+
+                    // Set vars for stlying
+                    varTop = Math.round(200 * Math.random(), 0);
+                    varLeft = Math.round(200 * Math.random(), 0);
+                    varBackCol = [ Math.round(200 * Math.random(), 0), Math.round(200 * Math.random(), 0), Math.round(200 * Math.random(), 0)];
+
+                    // Update CSS Stylings
+                    $('.bluebox').css('position', 'absolute');
+                    $('.bluebox').css({
+                            'top': varTop,
+                            'left': varLeft,
+                            'background-color': 'rgb('+ varBackCol + ')',
+                            'height': '120px'
+                        });
+
+                    // Add paragraph with updates
+                    // $('.bluebox').after('<p> Colors = ' + varBackCol + '</p><p>Position = ' + varLeft + ',' + varTop + ' </p>');
+                });
+                
+                // Button to toggle class
+                $('#changeApple').click(function(){
+                    $('#apple').toggleClass('redbox');
+                    
+                });
+                
+                // Hide on click
+                $('#apple').dblclick(function(){
+                    $(this).hide();
+                });
+                
+                // Show on click
+                $('#ShowApple').click(function(){
+                   $('#apple').show(); 
+                });
+                
+                // Wrap an element
+                $('#ChangeFB').click(function(){
+                    $('#FbSpan').wrap('<div></div>');
+                });
+            });
+        </script>
+    </body>
+    
+</html>

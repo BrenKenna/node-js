@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Reorder</title>
+        <style>
+            .bluebox{
+                background-color:blue;
+                color:white;
+                height:80px;
+                width:500px;
+            }
+            .yellowbox{
+                background-color:rgb(222, 224, 85);
+                height: auto;
+                width: 600px;
+                padding: 10px;
+                margin-top: 10px;
+                margin-bottom: 10px;
+            }
+            .redbox{
+                background-color: #f61212;
+                padding: 10px;
+                margin-bottom: 10px;
+                margin-top: 10px;
+                height:auto;
+                width:auto;
+            }
+            li{
+                font-size: 2em;
+                margin-bottom: 5px;
+                text-align: center;
+                list-style-type: none;
+            }
+            #carList .ui-selecting{
+                background: #740da0;
+            }
+            #carList .ui-selected{
+                background: #740da0;
+                color: white;
+            }
+            .carConnect{
+                border: 1px solid;
+                min-height: 30px;
+            }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+        </script>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/blitzer/jquery-ui.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    </head>
+    
+    <body>
+        <!-- Website Code -->
+        <div class="bluebox ui-corner-all", id='facebook'>
+            <p>Facebook is not <span id='FbSpan'>Donkey Kong</span></p>
+        </div>
+        <div class="yellowbox", id='apple'>
+            <ul class="carConnect" id= 'carList'>
+                <li class='ui-state-default'>Audi</li>
+                <li class='ui-state-default'>BMW</li>
+                <li class='ui-state-default notSortable'>Merc</li>
+            </ul>
+        </div>
+        <div class="redbox", id='google'>
+                <ul class="carConnect" id= 'carList2'>
+                    <li class='ui-state-default'>Toyota</li>
+                    <li class='ui-state-default'>Ford</li>
+                    <li class='ui-state-default'>Derp</li>
+            </ul>
+
+        </div>
+
+
+        <!-- Javascript Code -->
+        <script>
+            $(function(){
+    
+                // Reorder carList 1
+                $("#carList").sortable({
+                    placeholder: "ui-state-highlight",
+                    cancel: ".notSortable"
+                });
+
+
+                // Reorder carList 1
+                $("#carList2").sortable({
+                    placeholder: "ui-state-highlight"
+                });
+
+
+                // Exchange between lists
+                $("#carList, #carList2").sortable({
+                    connectWith: ".carConnect"
+                })
+            });
+        </script>
+    </body>
+    
+</html>

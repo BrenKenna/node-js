@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>jQuery-UI: Accordion</title>
+        <style>
+            .bluebox{
+                background-color:blue;
+                color:white;
+                height:auto;
+                width:auto;
+            }
+            .yellowbox{
+                background-color:rgb(222, 224, 85);
+                height:80px;
+                width:500px;
+            }
+            .redbox{
+                background-color: #f61212;
+                height:80px;
+                width:500px;
+            }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+        </script>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/blitzer/jquery-ui.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    </head>
+    
+    <body>
+        <!-- Website Code -->
+        <div id='resizer' class="ui-widget-content">
+            <div class="bluebox ui-corner-all", id='facebook'>
+                <h1>Section 1</h1>
+                <div><p>Content 1</p></div>
+            
+                <h1>Section 2</h1>
+                <div><p>Content 2</p><p>Content 2</p><p>Content 2</p>   <p>Content 2</p><p>Content 2</p><p>Content 2</p><p>Content 2</p></div>
+            
+                <h1>Section 3</h1>
+                <div><p>Content 3</p></div>
+            </div>
+        </div>
+        <div class="yellowbox", id='apple'>
+            <p>Apple</p>
+        </div>
+        <div class="redbox", id='google'>
+            <p>Google</p>
+        </div>
+
+
+        <!-- Javascript Code -->
+        <script>
+            $(function(){
+
+                // Create accordion for a divsion
+                $('#facebook').accordion({
+                    collapsible: true,
+                    icons: {
+                        header: "ui-icon-circle-arrow-e",
+                        activeHeader: "ui-icon-circle-arrow-s"
+                    },
+                    heightStyle: 'fill'
+                });
+
+                // Make division containing accordion resizable
+                $('#resizer').resizable({
+                    resize: function(){
+                      $('#facebook').accordion("refresh");
+                    }
+                    });
+            });
+        </script>
+    </body>
+    
+                
+</html>

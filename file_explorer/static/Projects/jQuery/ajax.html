@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>AJAX</title>
+        <style>
+            .bluebox{
+                background-color:blue;
+                color:white;
+                height:80px;
+                width:500px;
+            }
+            .yellowbox{
+                background-color:rgb(222, 224, 85);
+                height:160px;
+                width:500px;
+            }
+            .redbox{
+                background-color: #f61212;
+                height:80px;
+                width:500px;
+            }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+        </script>
+    </head>
+    
+    <body>
+        <!-- Website Code -->
+        <div class="bluebox", id='facebook'>
+            <p>Facebook is not <span id='FbSpan'>Donkey Kong</span></p>
+        </div>
+        <div class="yellowbox", id='apple'>
+            <p>Apple</p>
+            <a href="https://www.google.com">donkey</a>
+            <p id='applePara'>App</p>
+        </div>
+        <div class="redbox", id='google'>
+            <p>Google</p>
+        </div>
+
+        <button id='loadFBdata'>Load Data</button>
+        <button id='loadApple'>Load Apple</button>
+        <button id='load2'>Change Apple</button>
+        <button id='animate'>Animate</button>
+
+        <!-- Javascript Code -->
+        <script>
+            $(function(){
+    
+                // Load specific content from file to an ID
+                $('#loadApple').click(function(){
+                $('#applePara').load('ajax/data.txt #para1');
+                });
+
+                // Load content from a file
+                $('#loadFBdata').click(function(){
+                    $.ajax({
+                        url: 'ajax/data.txt',
+                        success: function(data){
+                            $('#facebook').html(data);  
+                        };
+                    });
+                });
+
+                // Load content from a file
+                $('#load2').click(function(){
+                    $.ajax({url: 'ajax/data.txt'}).done(function(somedata){
+                        $('#google').html(somedata);
+                    });
+                });
+
+            });
+        </script>
+    </body>
+    
+</html>

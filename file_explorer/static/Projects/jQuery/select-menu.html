@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>jQuery-UI: Select Menu and Group Options</title>
+        <style>
+            .bluebox{
+                background-color:blue;
+                color:white;
+                height:80px;
+                width:500px;
+            }
+            .yellowbox{
+                background-color:rgb(222, 224, 85);
+                height:160px;
+                width:500px;
+            }
+            .redbox{
+                background-color: #f61212;
+                height:80px;
+                width:500px;
+            }
+
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+        </script>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/blitzer/jquery-ui.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    </head>
+    
+    <body>
+        <!-- Website Code -->
+        <div class="bluebox ui-corner-all", id='facebook'>
+            <label for="strength">Select Biggest strength</label>
+            <br />
+            <form><select id="strength" name="strength">
+                <option>Option A</option>
+                <option selected="selected">Option B</option>
+                <option>Option C</option>
+                <option>Option D</option>
+                <option>Option E</option>
+                </select></form>
+        </div>
+        <div class="yellowbox", id='apple'>
+            <form>
+                <select id="options2" name="options2">
+                    <optgroup label="group1">
+                        <option>Option A</option>
+                        <option selected="selected">Option B</option>
+                        <option>Option C</option>
+                    </optgroup>
+                    <optgroup label="group2">
+                        <option>Option D</option>
+                        <option>Option E</option>
+                    </optgroup>
+                </select>
+            </form>
+        </div>
+        <div class="redbox", id='google'>
+            <p>Google</p>
+        </div>
+
+
+        <!-- Javascript Code -->
+        <script>
+            $(function(){
+
+                // Style selectmenu using jQuery-UI
+                $('#strength').selectmenu();
+
+                // Style option groups using jQuery-UI
+                $('#options2').selectmenu();
+            });
+        </script>
+    </body>
+    
+</html>

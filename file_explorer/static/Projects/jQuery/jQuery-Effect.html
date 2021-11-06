@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>jQuery Effects</title>
+        <style>
+            .bluebox{
+                background-color:blue;
+                color:white;
+                height:80px;
+                width:500px;
+            }
+            .yellowbox{
+                background-color:rgb(222, 224, 85);
+                height:80px;
+                width:500px;
+            }
+            .redbox{
+                background-color: #f61212;
+                height:80px;
+                width:500px;
+            }
+            p{
+                margin: 0;
+            }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+        </script>
+    </head>
+    
+    <body>
+        <!-- Website Code -->
+        <div class="bluebox", id='facebook'>
+            <p>Facebook is not <span id='FbSpan'>Donkey Kong</span></p>
+        </div>
+        <div class="yellowbox", id='apple'>
+            <p>Apple</p>
+            <a href="https://www.google.com">donkey</a>
+        </div>
+        <div class="redbox", id='google'>
+            <p>Google</p>
+        </div>
+
+        <button id='FadeApple'>Fade Apple</button>
+        <button id='FadeInApple'>Fade In Apple</button>
+        <button id='ToggleAppleFade'>Change FB</button>
+        <button id='animate'>Animate</button>
+
+        <!-- Javascript Code -->
+        <script>
+            $(function(){
+    
+                // Fade Out
+                $('#FadeApple').click(function(){
+                   $('#apple').fadeOut(1000); 
+                });
+                
+                // Fade In
+                $('#FadeApple').click(function(){
+                   $('#apple').fadeIn('fast'); 
+                });
+                
+                // Toggle Fadoing
+                $('#ToggleAppleFade').click(function(){
+                    $('#apple').fadeToggle('slow');  
+                });
+
+
+                // Animate a Division
+                // $('#animate').click(function(){ $('#facebook').animate({ width:'200px', height: '200px', opacity: '0.5' }, 1000) });
+                
+                // Another animation
+                $('#animate').click(function(){
+                    $('#facebook').animate({width: '200px'}, 200);
+                    $('#facebook').animate({height: '100px'}, 200);
+                    $('#facebook').animate({height: '200px'}, 200);
+                    $('#facebook').delay(300).animate({width: '300px'}, 200);
+                });
+            });
+        </script>
+    </body>
+    
+</html>

@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <title>Drawing Application</title>
+
+         <!-- Jquery & Jquery-UI Google CDN -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/start/jquery-ui.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+
+        <!-- CSS Stylings from Site -->
+        <link rel="stylesheet" href="stylings.css">
+    </head>
+
+
+    <body>
+        <!-- Title Div -->
+        <div id="titleHeader">Drawing App</div>
+
+        <!-- Art Divisions -->
+        <div id="artDiv" class="inputCont">
+
+            <!-- Color Setter -->
+            <div class="input" id="colorInp">
+                <input id="paintColor" type="color" list>
+            </div>
+
+            <!-- Size Controller -->
+            <div class="input" id="sizeInp">
+                <div id="sizer"></div>
+            </div>
+
+            <!-- Slider -->
+            <div class="input" id="sliderInp">
+                <div id="slider"></div>
+            </div>
+        </div>
+
+
+        <!-- Canvas Container -->
+        <div id="ArtContainer">
+            <canvas id="paint" width="500px" height="400px">
+            </canvas>
+        </div>    
+
+
+        <!-- Canvas Buttons -->
+        <div class="artButDiv">
+
+            <!-- Erase -->
+            <div class="artButs">
+                <span id="erase" class="artBut">Erase</span>
+            </div>
+
+            <!-- Save -->
+            <div class="artButs">
+                <span id="save" class="artBut">Save</span>
+            </div>
+
+            <!-- Reset -->
+            <div class="artButs">
+                <span id="reset" class="artBut">Reset</span>
+            </div>
+        </div>
+
+
+        <script src="app.js"></script>
+    </body>
+</html>

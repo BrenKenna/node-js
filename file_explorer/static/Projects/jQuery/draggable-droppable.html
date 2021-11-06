@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>jQuery-UI: Draggable and Droppable</title>
+        <style>
+            .bluebox{
+                background-color:blue;
+                color:white;
+                height:100px;
+                width:500px;
+            }
+            .yellowbox{
+                background-color:rgb(222, 224, 85);
+                height:100px;
+                width:500px;
+            }
+            .redbox{
+                background-color: #f61212;
+                height:100px;
+                width:500px;
+            }
+            .droppable{
+                background-color: grey;
+                height: 300px;
+                width: 500px;
+                margin-top: 10px;
+            }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js">
+        </script>
+        <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/themes/blitzer/jquery-ui.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    </head>
+    
+    <body>
+        <!-- Website Code -->
+        <div class="bluebox ui-corner-all", id='facebook'>
+            <p>Facebook is not <span id='FbSpan'>Donkey Kong</span></p>
+        </div>
+        <div class="yellowbox", id='apple'>
+            <ul id='shopItems'>
+                <li>Eggs</li>
+                <li>Milk</li>
+                <li>Bread</li>
+                <li>Dynamite</li>
+            </ul>
+        </div>
+        <div class="redbox", id='google'>
+            <p>Google</p>
+            <p></p>
+            <p></p>
+        </div>
+        <div id='droppableBox', class='droppable ui-corner-all'>
+            <p>I'm hungry from some HTML :)</p>
+        </div>
+
+        <!-- Javascript Code -->
+        <script>
+            $(function(){
+                var message = ["please!", "leave me alone!", "drop me!", "come one!"];
+                // Make elements draggable
+                $('#facebook').draggable();
+                $('#apple').draggable();
+
+                // Execute functions during drag
+                $('#google').draggable({
+                    revert: true,
+                    start: function(){
+                        $('#facebook').css('background-color', 'black');
+                    },
+                    drag: function(){
+                        // Change Google CSS
+                        varBackCol = [ Math.round(200 * Math.random(), 0), Math.round(200 * Math.random(), 0), Math.round(200 * Math.random(), 0)];
+                        $('#google').css('background-color', 'rgb(' + varBackCol + ')');
+
+                        // Change Google HTML on drag
+                        $('#google').find('p').html(message[Math.floor(4 * Math.random())]);
+                    },
+                    stop: function(){
+                        // Change CSS at stop
+                        varBackCol = [ Math.round(200 * Math.random(), 0), Math.round(200 * Math.random(), 0), Math.round(200 * Math.random(), 0)];
+                        $('#apple').css('background-color', 'rgb(' + varBackCol + ')');
+                        
+                        // Change html at stop
+                        $('#google').html('<p>Finally!!!</p>');
+                    }
+                });
+
+                // Make the hungry box droppable
+                $('#droppableBox').droppable({
+                    drop: function(event, ui){
+
+                        // Set background color
+                        $(this).css('background-color', 'green');
+
+                        // Drop paragraph
+                        $(this).find('p').remove();
+
+
+                        // Set an empty element to text value of draggable
+                        $("<li></li>").text(ui.draggable.text).append(this);
+                        
+                    },
+                    accept:'#shopItems li'
+                });
+
+                // Make shopping list draggable
+                $('#shopItems').find('li').draggable({
+                    helper: 'clone',
+                    appendTo: 'body'
+                });
+            });
+        </script>
+    </body>
+    
+</html>
