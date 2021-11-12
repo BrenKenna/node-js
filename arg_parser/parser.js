@@ -1,5 +1,15 @@
-// Class to hold argument data
-// - Optional parameters with "arg = None"
+/**
+ * 
+ * Class to hold and update command line argument data
+ * 
+ * Includes methods for:
+ *      i). Broad getters/setters for argData map.
+ *      ii). Updating argData with provided command-line arguments.
+ *      iii). Getting active arguments.
+ *      iv). Getting argument values.
+ * 
+ */
+
 class Parser{
 
     // Constructor
@@ -122,6 +132,193 @@ class Parser{
     // Get arg in action
     getActionArg(action, arg) {
         return this.argData.get("Actions").get(action).get(arg);
+    }
+
+
+    /**
+     * 
+     * Setting arguments from command line argv
+     * 
+     */
+
+    // Set global variables
+    updateGlobalVariables(){
+
+        // Initalize variables
+        let argInd;
+        let i, j, argUpdated;
+
+        // Get global arguments
+        for (i of this.getGlobalArguments().keys() ){
+
+            // Skip 
+            if (i != "State") {
+
+                // Scan the argv list for the search keys of active argument
+                for(j of this.getArgument(i).get("Keys").get("search")){
+
+                    // Only self if the search is present
+                    argInd = process.argv.indexOf(j);
+                    if(argInd >= 0) {
+                        this.getArgument(i).get("Keys").set("value", process.argv[argInd+1] );
+                        this.getArgument(i).set("State", 1);
+                        argUpdated = 1;
+                    }
+                    
+                }
+            }
+        }
+
+        // Note that global arguments has been set at least once
+        if (argUpdated == 1){
+            this.argData.get("Global Arguments").set("State", 1);
+        }
+
+    }
+
+    // Update action argument
+    updateActionArgs() {
+
+        // Initalize variables
+        let actionInd;
+        let action, argument, j;
+        let argvSlice;
+        let argInd
+
+        // Scan each action present in argv
+        for ( action of this.getActions().keys() ) {
+            actionInd = process.argv.indexOf(action);
+            if( actionInd != -1 ){
+        
+                /// Set state from expected to assigned
+                this.getAction(action).set("State", 1);
+
+                // Slice argv and search it for arguments
+                for (argument of this.getAction(action).keys()){
+                    if (argument != "State") {
+                        for (j of this.getActionArg(action, argument).get("Keys").get("search")){
+                            argInd = process.argv.indexOf(j);
+                            if ( argInd >= 0 ) {
+                                this.getActionArg(action, argument).get("Keys").set("value", process.argv[argInd+1]);
+                                this.getActionArg(action, argument).set("State", 1);
+                            }
+                        }
+                    }
+                }   
+            }
+        }
+    }
+
+    /**
+     * 
+     * Get active actions, arguments
+     * 
+     */
+
+    // Get active global args
+    getActiveGlobalArgs(){
+
+        // Initalize variables
+        let args = [];
+        let arg;
+
+        // Determine active actions
+        for (arg of this.getGlobalArguments().keys() ) {
+            
+            // Pass if key is state
+            if ( arg != "State") {
+
+                // Add if active
+                if (this.getArgument(arg).get("State") == 1) {
+                    args.push(arg);
+                }
+
+            }
+            
+        }
+
+        // Return list
+        return args;
+    }
+
+    // Get active actions
+    getActiveActions(){
+
+        // Determine active actions
+        let actions = [];
+        let action;
+        for (action of this.getActions().keys() ) {
+            if (this.getAction(action).get("State") == 1) {
+                actions.push(action);
+            }
+        }
+
+        // Return active actions
+        return actions;
+    }
+
+
+    // Get active action arguments
+    getActiveActionArgs(action){
+
+        // Determine active arguments of an action
+        let actionArgs = [];
+        let arg;
+        for ( arg of this.getAction(action).keys()){
+
+            // Pass on action 
+            if (arg != "State") {
+                if (this.getActionArg(action, arg).get("State") == 1 ) {
+                    actionArgs.push(arg);
+                }
+            }
+            
+        }
+
+        // Return actions active arguments
+        return actionArgs;
+    }
+
+
+    /**
+     * 
+     * Get values for arguments (global, action)
+     * 
+     */
+
+    // Get value for global argument
+    getGlobalArgumentValue(arg){
+
+        // Initialize variables
+        let argValue;
+
+        // Handle undefined value
+        if (this.getActiveGlobalArgs().indexOf(arg) >= 0 ){
+            argValue = this.getArgument(arg).get("Keys").get("value");
+        } else {
+            argValue = undefined;
+        }
+
+        // Return value
+        return argValue;
+
+    }
+
+    // Get value of argument in action
+    getActionArgValue(action, arg) {
+
+        // Initialize return
+        let argValue
+
+        // Handle undefined
+        if ( this.getActiveActionArgs(action).indexOf(arg) >= 0 ) {
+            argValue = this.getActionArg(action, arg).get("Keys").get("value");
+        } else {
+            argValue = undefined;
+        }
+
+        // Return argValue
+        return argValue;
     }
 }
 

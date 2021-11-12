@@ -84,66 +84,36 @@ ParserObj.addAction("delete", "Heading", "Heading of the body to delete", "-H,--
  */
 
 
-// Initialize variables
-let argInd;
-argv = [
-    "--server", "myhostname", "-T", "60",
-    "register", "--username", "bkenna", "-E", "hello@donkey.com",
-    "update", "-T", "myFirstNote", "--heading", "Section1", "-U", "bkenna", "--body", "myFile.txt"
-];
+// Set global arguments
+ParserObj.updateGlobalVariables();
 
 
-// Set global variables
-for (i of ParserObj.getGlobalArguments().keys() ){
-    if (i != "State") {
-        for(j of ParserObj.getArgument(i).get("Keys").get("search")){
-            argInd = process.argv.indexOf(j);
-            if(argInd >= 0) {
-                ParserObj.getArgument(i).get("Keys").set("value", process.argv[argInd+1] );
-            }
-            
-        }
-    }
-    
-}
-
-// Set action variables
-for ( action of ParserObj.getActions().keys() ) {
-    actionInd = process.argv.indexOf(action);
-    if( actionInd != -1 ){
-
-        // Set state
-        ParserObj.getAction(action).set("State", 1);
-
-        // Slice argv and search it for arguments
-        argvSlice = process.argv.slice(actionInd);
-        for (argument of ParserObj.getAction(action).keys()){
-
-            if (argument != "State") {
-                for (j of ParserObj.getActionArg(action, argument).get("Keys").get("search")){
-                    argInd = argvSlice.indexOf(j);
-                    if ( argInd >= 0 ) {
-                        ParserObj.getActionArg(action, argument).get("Keys").set("value", argvSlice[argInd+1]);
-                    }
-                }
-            }
-        }   
-    }
-}
+// Set action arguments
+ParserObj.updateActionArgs();
 
 
-// Determine active actions
-let actions = [];
-let command;
-for (action of ParserObj.getActions().keys() ) {
-    if (ParserObj.getAction(action).get("State") == 1) {
-        actions.push(action);
-    }
-}
+// Set variables
+let server, timeout;
+let username, email;
+let title, body, heading;
 
-if (actions.length == 1) {
-    command = actions[0];
-}
+// Global
+server = ParserObj.getGlobalArgumentValue("Server");
+timeout = ParserObj.getGlobalArgumentValue("Timeout");
+portN = ParserObj.getGlobalArgumentValue("Port");
+
+// Registering
+username = ParserObj.getActionArgValue("register", "Username");
+email = ParserObj.getActionArgValue("register", "Email");
+
+console.log(`
+    Server = ${server},
+    Timeout = ${timeout},
+    Port Number = ${portN},
+    Username = ${username},
+    Email = ${email},
+    Active actions = ${ParserObj.getActiveActions()}
+`)
 
 
 /**
@@ -152,34 +122,6 @@ if (actions.length == 1) {
  * 
  */
 
-// Set variables
-let server, timeout;
-let username, email;
-let title, body, heading;
-
-// Global
-server = ParserObj.getArgument("Server").get("Keys").get("value");
-timeout = ParserObj.getArgument("Timeout").get("Keys").get("value");
-
-// Registering
-// username = ParserObj.getActionArg("register", "Username").get("Keys").get("value");
-// email = ParserObj.getActionArg("register", "Email").get("Keys").get("value");
-
-// Creating
-// username = ParserObj.getActionArg("create", "Username").get("Keys").get("value");
-// title = ParserObj.getActionArg("create", "Title").get("Keys").get("value");
-// body = ParserObj.getActionArg("create", "Body").get("Keys").get("value");
-
-
-// Reading
-// username = ParserObj.getActionArg("read", "Username").get("Keys").get("value");
-// title = ParserObj.getActionArg("read", "Title").get("Keys").get("value");
-
-// Updating
-username = ParserObj.getActionArg("update", "Username").get("Keys").get("value");
-title = ParserObj.getActionArg("update", "Title").get("Keys").get("value");
-heading = ParserObj.getActionArg("update", "Heading").get("Keys").get("value");
-body = ParserObj.getActionArg("update", "Body").get("Keys").get("value");
 
 // Set user path constant
 let userPath;
