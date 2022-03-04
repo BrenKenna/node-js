@@ -8,6 +8,9 @@
  *      iii). Getting active arguments.
  *      iv). Getting argument values.
  * 
+ * To do:
+ *      i). Action scoped arguments (like username for CRUD)?
+ * 
  */
 
 class Parser{
